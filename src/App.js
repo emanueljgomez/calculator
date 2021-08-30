@@ -10,19 +10,23 @@ import RowStyle from "./styles/rowStyle";
 import ColStyle from "./styles/colStyle";
 
 function App() {
+  let lastInput = "";
+
   const [result, setResult] = useState(""); // Initial state is blank, result will be shown inside the Input component
 
   const addToResult = (val) => {
     // the 'symbol' from a Button is received as value (val) and used in the concatenation operation
     setResult(result.concat(...val)); // This function will display numbers and operators when the buttons are pressed
+    lastInput = parseInt(result.substring(result.length - 1));
+    console.log(lastInput);
   };
 
   const resetInput = () => {
-    setResult("");
+    setResult(0);
   };
 
   const calculateResult = () => {
-    setResult(Number(eval(result)));
+    setResult(String(Number(eval(result))));
   };
 
   return (
