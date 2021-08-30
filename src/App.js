@@ -21,6 +21,10 @@ function App() {
     setResult("");
   };
 
+  const calculateResult = () => {
+    setResult(Number(eval(result)));
+  };
+
   return (
     <ContainerStyle>
       <CalcWrapperStyle>
@@ -61,7 +65,7 @@ function App() {
           <Button symbol="." handleClick={addToResult} />
           <ButtonBlank />
           <ColStyle>
-            <ButtonLarge symbol="=" />
+            <ButtonLarge symbol="=" handleClick={calculateResult} />
           </ColStyle>
         </RowStyle>
       </CalcWrapperStyle>
