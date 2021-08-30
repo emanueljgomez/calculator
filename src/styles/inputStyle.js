@@ -7,6 +7,7 @@ const InputStyle = styled.input`
   background-color: #2b293d;
   color: #79b39e;
   text-align: right;
+  font-size: 150%;
   &:focus {
     outline: none;
     border: none;
