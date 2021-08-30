@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+// 'css' is an additional required import when special properties are going to be declared
 
 const ButtonStyle = styled.button`
   width: 100px;
@@ -13,5 +14,17 @@ const ButtonStyle = styled.button`
   border: 1px solid #c0c7bb;
   color: #6e736b;
   padding: 0.25em 1em;
+
+  ${(props) =>
+    props.blank &&
+    css`
+      visibility: hidden;
+    `}
+
+  ${(props) =>
+    props.large &&
+    css`
+      height: 100px;
+    `}
 `;
 export default ButtonStyle;
