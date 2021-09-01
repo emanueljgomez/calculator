@@ -17,13 +17,16 @@ function App() {
     document.title = `Calculadora: [ ${result} ]`;
   });
 
+  useEffect(() => {
+    if (result == "Infinity") {
+      setResult("0");
+    };
+  });
+
   const addToResult = (val) => {
     // the 'symbol' from a Button is received as value (val) and used in the concatenation operation
     try {
       setResult(result + val); // This function will display numbers and operators when the buttons are pressed
-      if (result == "Infinity") {
-        setResult("0");
-      }
     } catch (error) {
       alert(
         "[ ERROR ]\n\nLa operación es inválida, por favor intente de nuevo.\n\nMensaje de error:\n\n" +
@@ -37,7 +40,7 @@ function App() {
     setResult("");
   };
 
-  const calculateResult = () => {
+  const calculateResult = () => {   
     try {
       setResult(eval(result));
     } catch (error) {
@@ -57,7 +60,7 @@ function App() {
         <RowStyle>
           <Button symbol="C" handleClick={resetInput} />
           <Button symbol="/" handleClick={addToResult} />
-          <Button symbol="x" handleClick={addToResult} />
+          <Button symbol="*" handleClick={addToResult} />
           <Button symbol="-" handleClick={addToResult} />
         </RowStyle>
 
