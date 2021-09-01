@@ -10,23 +10,38 @@ import RowStyle from "./styles/rowStyle";
 import ColStyle from "./styles/colStyle";
 
 function App() {
-  let lastInput = "";
-
   const [result, setResult] = useState(""); // Initial state is blank, result will be shown inside the Input component
 
   const addToResult = (val) => {
     // the 'symbol' from a Button is received as value (val) and used in the concatenation operation
-    setResult(result.concat(...val)); // This function will display numbers and operators when the buttons are pressed
-    lastInput = parseInt(result.substring(result.length - 1));
-    console.log(lastInput);
+    try {
+      setResult(result + val); // This function will display numbers and operators when the buttons are pressed
+      if (result == "Infinity") {
+        setResult("0");
+      }
+    } catch (error) {
+      alert(
+        "[ ERROR ]\n\nLa operación es inválida, por favor intente de nuevo.\n\nMensaje de error:\n\n" +
+          error
+      );
+      setResult("");
+    }
   };
 
   const resetInput = () => {
-    setResult(0);
+    setResult("");
   };
 
   const calculateResult = () => {
-    setResult(String(Number(eval(result))));
+    try {
+      setResult(eval(result));
+    } catch (error) {
+      alert(
+        "[ ERROR ]\n\nLa operación es inválida, por favor intente de nuevo.\n\nMensaje de error:\n\n" +
+          error
+      );
+      setResult("");
+    }
   };
 
   return (
