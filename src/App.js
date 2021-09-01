@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useEffect } from "react";
 import ContainerStyle from "./styles/containerStyle";
 import Button from "./components/Button";
 import ButtonLarge from "./components/ButtonLarge";
@@ -11,6 +12,10 @@ import ColStyle from "./styles/colStyle";
 
 function App() {
   const [result, setResult] = useState(""); // Initial state is blank, result will be shown inside the Input component
+
+  useEffect(() => {
+    document.title = `Calculadora: [ ${result} ]`;
+  });
 
   const addToResult = (val) => {
     // the 'symbol' from a Button is received as value (val) and used in the concatenation operation
