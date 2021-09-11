@@ -26,5 +26,13 @@ const ButtonStyle = styled.button`
     css`
       height: 100px;
     `}
+
+    ${(props) =>
+    props.action &&
+    css`
+      background-color: black;
+      color: white;
+      border-color: white;
+    `}
 `;
 export default ButtonStyle;

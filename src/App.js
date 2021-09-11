@@ -2,9 +2,11 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import ContainerStyle from "./styles/containerStyle";
+import ContainerStyleTwo from "./styles/containerStyleTwo";
 import Button from "./components/Button";
 import ButtonLarge from "./components/ButtonLarge";
 import ButtonBlank from "./components/ButtonBlank";
+import ButtonAction from "./components/ButtonAction";
 import Input from "./components/Input";
 import CalcWrapperStyle from "./styles/calcWrapperStyle";
 import RowStyle from "./styles/rowStyle";
@@ -14,13 +16,14 @@ function App() {
   const [result, setResult] = useState(""); // Initial state is blank, result will be shown inside the Input component
 
   useEffect(() => {
-    document.title = `Calculadora: [ ${result} ]`;
+    document.title = `Calculadora: [ ${result} ]`; // A simple useEffect hook that will show in real time the current state of 'result' in the document title
   });
 
   useEffect(() => {
     if (result == "Infinity") {
+      // Hard-coded solution for situations where a division by zero is detected
       setResult("0");
-    };
+    }
   });
 
   const addToResult = (val) => {
@@ -32,7 +35,7 @@ function App() {
         "[ ERROR ]\n\nLa operación es inválida, por favor intente de nuevo.\n\nMensaje de error:\n\n" +
           error
       );
-      setResult("");
+      setResult(""); // Error handling logic is applied in case of invalid user input
     }
   };
 
@@ -40,7 +43,7 @@ function App() {
     setResult("");
   };
 
-  const calculateResult = () => {   
+  const calculateResult = () => {
     try {
       setResult(eval(result));
     } catch (error) {
@@ -50,6 +53,10 @@ function App() {
       );
       setResult("");
     }
+  };
+
+  const saveResult = () => {
+    localStorage.setItem("Saved value", JSON.stringify(result)); // Local Storage is used in this function to save the current state of 'result'
   };
 
   return (
@@ -95,6 +102,12 @@ function App() {
             <ButtonLarge symbol="=" handleClick={calculateResult} />
           </ColStyle>
         </RowStyle>
+
+        <ContainerStyleTwo>
+          <ButtonAction symbol="" value="Guardar" handleClick={saveResult} />
+          <ButtonAction value="Borrar" />
+          <ButtonAction value="Recuperar" />
+        </ContainerStyleTwo>
       </CalcWrapperStyle>
     </ContainerStyle>
   );
