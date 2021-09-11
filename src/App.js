@@ -29,7 +29,7 @@ function App() {
   const addToResult = (val) => {
     // the 'symbol' from a Button is received as value (val) and used in the concatenation operation
     try {
-      setResult(result + val); // This function will display numbers and operators when the buttons are pressed
+      setResult(result + val); // This will display numbers and operators when the buttons are pressed
     } catch (error) {
       alert(
         "[ ERROR ]\n\nLa operación es inválida, por favor intente de nuevo.\n\nMensaje de error:\n\n" +
@@ -40,11 +40,13 @@ function App() {
   };
 
   const resetInput = () => {
+    // This function clears the input, setting the state of 'result' to blank
     setResult("");
   };
 
   const calculateResult = () => {
     try {
+      // Error handling logic is applied in case of invalid user input
       setResult(eval(result));
     } catch (error) {
       alert(
