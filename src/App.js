@@ -59,6 +59,14 @@ function App() {
     localStorage.setItem("Saved value", JSON.stringify(result)); // Local Storage is used in this function to save the current state of 'result'
   };
 
+  const getResult = () => {
+    localStorage.getItem("Saved value", JSON.stringify(result)); // Local Storage is used in this function to retrieve the previously saved state of 'result'
+
+    const getSaved = localStorage.getItem("Saved value");
+    const parsedValue = JSON.parse(getSaved);
+    setResult(parsedValue);
+  };
+
   return (
     <ContainerStyle>
       <CalcWrapperStyle>
@@ -105,8 +113,8 @@ function App() {
 
         <ContainerStyleTwo>
           <ButtonAction symbol="" value="Guardar" handleClick={saveResult} />
-          <ButtonAction value="Borrar" />
-          <ButtonAction value="Recuperar" />
+          <ButtonAction value="Borrar" handleClick={resetInput} />
+          <ButtonAction value="Recuperar" handleClick={getResult} />
         </ContainerStyleTwo>
       </CalcWrapperStyle>
     </ContainerStyle>
